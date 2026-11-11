@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Проверенная подборка книг, статей, видео и тренажёров по проектированию систем. Восьминедельный роадмап для руководителя разработки.">
+  <title>Роадмап System Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;650;700&family=Unbounded:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230c0d11'/%3E%3Cpath d='M6 22V10h4l6 8 6-8h4v12h-3V15l-7 9-7-9v7H6z' fill='%23e2b07a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-kicker">System Design</span>
+        <h1>Роадмап на 8 недель</h1>
+      </div>
+      <div class="header-tools">
+        <label class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          <input id="search" type="search" placeholder="Поиск по названию, автору, теме…" autocomplete="off">
+        </label>
+        <div class="progress-box" title="Прогресс сохраняется только в этом браузере">
+          <div class="progress-bar" aria-hidden="true"><span id="progress-fill"></span></div>
+          <span id="progress-text">0 из 0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h2>Проектировать системы уверенно — и расти к уровню CTO</h2>
+      <p>Подборка для руководителя разработки, которому нужны не модные слова, а рабочий каркас: данные, масштаб, компромиссы, надёжность и ИИ-контуры. В списке только проверенные ссылки — без выдуманных курсов и мёртвых адресов.</p>
+      <p>Восемь недель — сжатый маршрут, а не обещание «прочесть всё». Книги можно растянуть, практику лучше не пропускать. Прогресс отмечается галочками и остаётся в браузере.</p>
+      <div class="meta-row">
+        <span class="chip">Обновлено 11 ноября 2026</span>
+        <span class="chip">Книги · статьи · видео · практика · ИИ</span>
+        <span class="chip">Русские переводы указаны, где они есть</span>
+      </div>
+    </section>
+
+    <div class="filters" id="filters" role="toolbar" aria-label="Фильтр по типу">
+      <button class="filter-btn" type="button" data-kind="all" aria-pressed="true">Все</button>
+      <button class="filter-btn" type="button" data-kind="book" aria-pressed="false">Книги</button>
+      <button class="filter-btn" type="button" data-kind="article" aria-pressed="false">Статьи</button>
+      <button class="filter-btn" type="button" data-kind="video" aria-pressed="false">Видео</button>
+      <button class="filter-btn" type="button" data-kind="practice" aria-pressed="false">Практика</button>
+      <button class="filter-btn" type="button" data-kind="ai" aria-pressed="false">ИИ-системы</button>
+    </div>
+
+    <nav class="rail" id="rail" aria-label="Недели роадмапа"></nav>
+    <div id="weeks"></div>
+    <p class="empty" id="empty">Ничего не нашлось. Сбросьте фильтр или измените запрос.</p>
+
+    <section class="library" id="library">
+      <h2>Полная библиотека</h2>
+      <p class="library-lead">Те же материалы списком, если удобнее идти не по неделям, а по типу. Отметка в роадмапе и здесь общая.</p>
+      <div id="library-lists"></div>
+    </section>
+
+    <div class="toolbar">
+      <span>В списке видно материалов: <strong id="visible-count">0</strong></span>
+      <button class="linkish" type="button" id="reset-progress">Сбросить прогресс</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Статичный сайт, без аккаунта и сервера. Ссылки проверены 11 ноября 2026 (Europe/Moscow). Netflix TechBlog иногда закрывает автоматические запросы, адрес официальный и рабочий в браузере.</p>
+      <p><a href="https://github.com/javedius/system-design-roadmap">Репозиторий на GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
