@@ -15,6 +15,7 @@
     rail: document.querySelector("#rail"),
     weeks: document.querySelector("#weeks"),
     library: document.querySelector("#library-lists"),
+    coreBooks: document.querySelector("#core-books-list"),
     progressFill: document.querySelector("#progress-fill"),
     progressText: document.querySelector("#progress-text"),
     empty: document.querySelector("#empty"),
@@ -90,6 +91,7 @@
             <a class="item-title" href="${item.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
             <span class="badge ${item.kind}">${escapeHtml(DATA.kinds[item.kind])}</span>
             <span class="badge level">${escapeHtml(DATA.levels[item.level])}</span>
+            ${item.time ? `<span class="badge time">${escapeHtml(item.time)}</span>` : ""}
             ${item.free ? '<span class="badge level">бесплатно</span>' : ""}
             ${item.authors ? `<span class="item-authors">${escapeHtml(item.authors)}</span>` : ""}
           </div>
@@ -122,6 +124,7 @@
           <a class="rail-item" href="#${week.id}">
             <span class="rail-n">Неделя ${week.n}</span>
             <span class="rail-title">${escapeHtml(week.title)}</span>
+            ${week.case ? `<span class="rail-case">${escapeHtml(week.case)}</span>` : ""}
             <span class="rail-prog" data-week-prog="${week.id}">${done}/${total}</span>
           </a>
         `;
@@ -143,6 +146,7 @@
             <div class="week-card">
               <button class="week-head" type="button" aria-expanded="${open ? "true" : "false"}">
                 <div>
+                  ${week.case ? `<span class="week-case">Кейс: ${escapeHtml(week.case)}</span>` : ""}
                   <h3>${escapeHtml(week.title)}</h3>
                   <p>${escapeHtml(week.goal)}</p>
                 </div>
@@ -165,6 +169,12 @@
     const hash = location.hash.replace("#", "");
     if (DATA.weeks.some((week) => week.id === hash)) return hash;
     return "w1";
+  }
+
+  function renderCoreBooks() {
+    if (!els.coreBooks || !DATA.coreBooks) return;
+    const books = DATA.coreBooks.map((id) => byId[id]).filter(Boolean);
+    els.coreBooks.innerHTML = `<div class="list">${books.map((item) => itemCard(item)).join("")}</div>`;
   }
 
   function renderLibrary() {
@@ -207,6 +217,11 @@
       card.classList.toggle("hidden", !show);
       if (show) visible += 1;
     });
+    const core = document.querySelector("#core-books");
+    if (core) {
+      const any = [...core.querySelectorAll(".item")].some((card) => !card.classList.contains("hidden"));
+      core.style.display = any ? "" : "none";
+    }
     document.querySelectorAll("[data-kind-block]").forEach((block) => {
       const any = [...block.querySelectorAll(".item")].some((card) => !card.classList.contains("hidden"));
       block.style.display = any ? "" : "none";
@@ -294,6 +309,7 @@
     });
   }
 
+  renderCoreBooks();
   renderRail();
   renderWeeks();
   renderLibrary();
